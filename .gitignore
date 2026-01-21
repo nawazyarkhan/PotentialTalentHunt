@@ -1,3 +1,10 @@
-*.doc
+*.docx
 *.xlsx
 *.csv
+_pycache__/
+*.log
+.DS_Store
+.env
+*.sqlite3
+*.db
+*.bak
