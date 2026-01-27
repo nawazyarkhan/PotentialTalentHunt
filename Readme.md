@@ -362,12 +362,6 @@ docker push <userid>/potential-talent-hunt:latest
 ---
 
 
-## 📜 License
-
-This project is open-source and intended for **educational and experimental use**.
-
----
-
 ## 🙌 Acknowledgements
 
 Built as part of engagement at APZIVA as an applied AI & MLOps exploration project , demonstrating how to productionize semantic search systems end to end.
