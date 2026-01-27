@@ -298,22 +298,18 @@ Ranked Results (JSON) → Gradio table
 ## 🐳 Docker & AWS ECS Deployment
 
 - The FastAPI application is containerized using **Docker**
-- The Docker image is pushed to **Amazon ECR**
+- The Docker image is pushed to **Docker Hub**
 - The image is deployed on **AWS ECS** (Fargate or EC2-backed) behind a load balancer for scalable inference
 
 ---
 
-## 🚢 Deployment Guide (ECR → ECS)
+## 🚢 Deployment Guide (DockerHub → ECS)
 
-Below is a practical, high-level deployment flow for pushing your container to **Amazon ECR** and running it on **Amazon ECS**.
+Below is a practical, high-level deployment flow for pushing your container to **Docker Hub** and running it on **Amazon ECS**.
 
 ### 1) Prerequisites
-- AWS account + IAM permissions for **ECR** and **ECS**
-- AWS CLI installed and configured:
-  ```bash
-  aws configure
-  ```
-- Docker installed
+- AWS account + IAM permissions for **ECS**
+
 
 ### 2) Create a repository on Docker Hub
 
