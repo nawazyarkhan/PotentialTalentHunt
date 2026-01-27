@@ -5,7 +5,8 @@ An **end-to-end AI-powered talent search and ranking system** built with **FastA
 The system enables recruiters or analysts to search and rank potential candidates (job profiles / resumes) using semantic vector similarity and configurable ranking logic (including a STAR-style ranking endpoint).
 
 ---
-
+Apziva project code: AbTK0iyp4MBSTNLb
+---
 ## 🚀 Project Overview
 
 This repository showcases a complete ML application lifecycle:
