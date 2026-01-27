@@ -171,7 +171,7 @@ Gradio will launch a local web UI (typically at `http://127.0.0.1:7860`) that co
 │  FastAPI Backend           │
 │  (FAISS + ML logic)        │
 │        │                   │
-└────────┼──────────────────┘
+└ ────────┼──────────────────┘
          │ Docker Image
          ▼
 ┌────────────────────────────┐
@@ -180,13 +180,13 @@ Gradio will launch a local web UI (typically at `http://127.0.0.1:7860`) that co
 │  FastAPI App               │
 │  + FAISS Index             │
 │                            │
-└────────┼──────────────────┘
+└ ────────┼──────────────────┘
          │ Push Image
          ▼
 ┌────────────────────────────┐
-│        AWS ECR             │
+│        Docker Hub          │
 │  (Container Registry)      │
-└────────┼──────────────────┘
+└ ────────┼──────────────────┘
          │ Deploy
          ▼
 ┌────────────────────────────┐
@@ -255,7 +255,7 @@ Gradio acts as a lightweight frontend, while FastAPI serves as the core inferenc
               │ 4) Push image
               ▼
 ┌───────────────────────────┐
-│     Amazon ECR (Registry)  │
+│     Docker Hub            │
 └─────────────┬─────────────┘
               │ 5) Deploy service
               ▼
@@ -314,17 +314,10 @@ Below is a practical, high-level deployment flow for pushing your container to *
   ```
 - Docker installed
 
-### 2) Create an ECR repository
-```bash
-aws ecr create-repository --repository-name potential-talent-hunt
-```
+### 2) Create a repository on Docker Hub
 
-### 3) Authenticate Docker to ECR
-Replace `<ACCOUNT_ID>` and `<REGION>`:
-```bash
-aws ecr get-login-password --region <REGION> \
-  | docker login --username AWS --password-stdin <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com
-```
+
+### 3) Authenticate/Logon to  Docker 
 
 ### 4) Build the Docker image
 From the repo root (or where your Dockerfile lives):
@@ -332,15 +325,15 @@ From the repo root (or where your Dockerfile lives):
 docker build -t potential-talent-hunt -f app/Dockerfile .
 ```
 
-### 5) Tag the image for ECR
+### 5) Tag the image for Docker Hub
 ```bash
 docker tag potential-talent-hunt:latest \
-  <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/potential-talent-hunt:latest
+  <userid>/potential-talent-hunt:latest
 ```
 
-### 6) Push the image to ECR
+### 6) Push the image to Docker Hub
 ```bash
-docker push <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/potential-talent-hunt:latest
+docker push <userid>/potential-talent-hunt:latest
 ```
 
 ### 7) Create an ECS Cluster
@@ -348,7 +341,7 @@ docker push <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/potential-talent-hunt:la
 - Choose **Fargate** (recommended for simplicity)
 
 ### 8) Create a Task Definition
-- Container image: your ECR image URI
+- Container image: your Docker Hub image URI
 - Port mapping: `8000` (FastAPI)
 - CPU/Memory: choose based on FAISS/model size
 - Environment variables: (optional) `MODEL_PATH`, `INDEX_PATH`, etc.
@@ -368,9 +361,6 @@ docker push <ACCOUNT_ID>.dkr.ecr.<REGION>.amazonaws.com/potential-talent-hunt:la
 
 ---
 
-
-
----
 
 ## 📜 License
 
